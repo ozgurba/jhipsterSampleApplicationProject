@@ -1,0 +1,42 @@
+entity ProjectAndActivity {
+	id Long,
+    plan Plan,
+    relatedLevelId String,
+    relatedLevelName String,
+    responsibleStakeHolder StakeHolder,
+    name String,
+    detail String,
+    openingDate LocalDate,
+    closingDate LocalDate,
+    type EnumProjectAndActivityType,
+    state EnumProjectAndActivityState,
+    weight Double,
+    progressLevel Integer
+}
+entity Plan {
+id Long
+}
+entity StakeHolder {
+id Long
+}
+
+relationship ManyToOne {
+	ProjectAndActivity {responsibleStakeHolder} to StakeHolder
+}
+
+
+relationship ManyToOne {
+	ProjectAndActivity {plan} to Plan
+}
+enum EnumProjectAndActivityType{
+	PROJECT,
+  	ACTIVITY
+}
+enum EnumProjectAndActivityState{
+	APPROVED,
+    NOTAPPROVED,
+  	DRAFT
+}
+// Set service options to all except few
+service all with serviceImpl
+
